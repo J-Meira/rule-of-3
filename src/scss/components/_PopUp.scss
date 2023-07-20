@@ -1,0 +1,11 @@
+.pop-up {
+  .MuiDialogActions-root {
+    justify-content: space-evenly;
+  }
+}
+.pop-up-list-form {
+  .MuiDialogContent-root,
+  .MuiGrid-item {
+    padding: 0 !important;
+  }
+}
