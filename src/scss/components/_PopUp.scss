@@ -1,11 +1,19 @@
 .pop-up {
+  .MuiDialogTitle-root {
+    background-color: $primary;
+  }
   .MuiDialogActions-root {
     justify-content: space-evenly;
   }
-}
-.pop-up-list-form {
-  .MuiDialogContent-root,
-  .MuiGrid-item {
+  .MuiDialogContent-root {
     padding: 0 !important;
+    .MuiGrid-item {
+      padding: 12px !important;
+    }
+  }
+  .MuiDialogActions-root {
+    .MuiButton-textSuccess {
+      color: $primary;
+    }
   }
 }

@@ -2,9 +2,12 @@ import { useState } from 'react';
 import moment from 'moment';
 
 import { Paper, Popover, Typography } from '@mui/material';
+import { useAppSelector } from '../../redux';
+import { dictionary, languageEnumState } from '../../enums';
 
 export const Footer = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const language = useAppSelector((state) => state.system.language);
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -35,14 +38,13 @@ export const Footer = () => {
           {process.env.REACT_APP_VERSION}
         </Typography>
         <Typography component='small'>
-          {' '}
-          Developed by
+          {dictionary[languageEnumState[language]].Developed}
           <a
             href='https://www.jmcreative.com.br'
             rel='noopener noreferrer'
             target='_blank'
           >
-            <b> JM Creative</b>
+            <b>JM Creative</b>
           </a>{' '}
           © 2007 - {moment().year()}
         </Typography>
@@ -64,7 +66,9 @@ export const Footer = () => {
           onClose={handlePopoverClose}
           disableRestoreFocus
         >
-          <Typography sx={{ p: 1 }}>{getReleaseDate()}</Typography>
+          <Typography
+            sx={{ p: 1 }}
+          >{`${getReleaseDate()} (UTC-3)`}</Typography>
         </Popover>
       </Paper>
     </footer>

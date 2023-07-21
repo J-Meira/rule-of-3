@@ -1,5 +1,5 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 export interface IMuiProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }

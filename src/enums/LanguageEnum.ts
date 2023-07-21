@@ -7,7 +7,7 @@ export const languageEnum: EnumObjectProps = {
 };
 
 export const languageEnumState: EnumObjectProps = {
-  1: 'EN',
-  2: 'ES',
-  3: 'BR',
+  1: 'en',
+  2: 'es',
+  3: 'pt',
 };

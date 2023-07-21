@@ -1,11 +1,11 @@
 import { Paper, Box, CircularProgress } from '@mui/material';
 import { useMultiContext } from '@j-meira/mui-theme';
 
-import { ReactComponent as LogoDark } from '../../assets/logo/icon-white.svg';
-import { ReactComponent as Logo } from '../../assets/logo/icon-back.svg';
+import { ReactComponent as LogoDark } from '../../assets/icon-dark.svg';
+import { ReactComponent as Logo } from '../../assets/icon.svg';
 
 import { useAppSelector } from '../../redux';
-import { getLoading } from '../../redux/reducers';
+import { getLoading } from '../../redux/slices';
 
 export const Loading = () => {
   const { dark } = useMultiContext();

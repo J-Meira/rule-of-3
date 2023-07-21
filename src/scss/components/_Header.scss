@@ -6,6 +6,12 @@
       .logo {
         height: 30px;
       }
+      .settings-btn {
+        position: fixed;
+        top: 5px;
+        right: 5px;
+        color: $white !important;
+      }
     }
   }
 }

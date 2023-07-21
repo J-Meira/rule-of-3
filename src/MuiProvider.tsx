@@ -14,15 +14,15 @@ export const MuiProvider = ({ children }: IMuiProviderProps) => {
       snackMax={3}
       palette={{
         primary: {
-          light: '#4db6ac',
-          main: '#009688',
-          dark: '00695f',
+          light: '#a02b95',
+          main: '#93278F',
+          dark: '#822187',
           contrastText: '#fff',
         },
         secondary: {
-          light: '#74706f',
-          main: '#494544',
-          dark: '#221e1d',
+          light: '#826c7d',
+          main: '#6e5869',
+          dark: '#4e3949',
           contrastText: '#fff',
         },
       }}

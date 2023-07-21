@@ -3,4 +3,4 @@ export interface IPopUp {
   toggle: () => void;
 }
 
-export * from './ListForm';
+export * from './SettingsPopUp';
