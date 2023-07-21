@@ -1,0 +1,27 @@
+footer {
+  width: 100%;
+  // flex: 0 1 auto;
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
+  // z-index: 999;
+  .MuiPaper-root {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+    padding: 0.5rem;
+    small {
+      font-size: 0.8rem;
+      + small {
+        margin-left: 1rem;
+      }
+    }
+    a {
+      color: $primary;
+      text-decoration: none;
+    }
+    a:hover {
+      color: $primary-dark;
+    }
+  }
+}

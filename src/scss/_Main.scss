@@ -1,0 +1,109 @@
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  padding-top: 4.5rem;
+  form {
+    flex: 0 0 auto;
+    .result {
+      fieldset {
+        border-color: $primary !important;
+      }
+      input,
+      label {
+        color: $primary;
+      }
+    }
+  }
+  .history {
+    flex: 1;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .clear-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 3px 5px;
+      font-size: 0.75rem;
+    }
+
+    h2 {
+      margin: 0;
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.4375em;
+      letter-spacing: 0.00938em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .history-container {
+      padding: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      .MuiGrid-container {
+        width: 100%;
+        margin: 0;
+        .MuiGrid-item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 8px !important;
+        }
+        + .MuiGrid-container {
+          border-top: 1px solid #dedede;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: RGBA(48, 48, 48, 0);
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: $secondary;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: $secondary-dark;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 2rem !important;
+    .MuiButtonBase-root {
+      width: 33.3333%;
+      color: $white;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .main-container {
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+}

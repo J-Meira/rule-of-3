@@ -1,0 +1,17 @@
+.app-bar {
+  .tool-bar {
+    padding-left: 4px;
+    .navigation-bar {
+      flex: 1 1 auto !important;
+      .logo {
+        height: 30px;
+      }
+      .settings-btn {
+        position: fixed;
+        top: 5px;
+        right: 5px;
+        color: $white !important;
+      }
+    }
+  }
+}
