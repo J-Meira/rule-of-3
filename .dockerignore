@@ -1,0 +1,6 @@
+.github
+.vscode
+build
+node_modules
+prototype
+static-files

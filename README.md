@@ -1,68 +1,185 @@
-Start date: 10/19/2020
+# Rule of 3
 
-## Available Scripts
+by [J.Meira](https://github.com/J-Meira)
 
-In the project directory, you can run:
+Documentation and Standard Development Environment
 
-### `yarn start`
+## Table of Contents
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Introduction](#introduction)
+- [Requirements](#requirements)
+  - [Ensure permissions for yarn](#ensure-permissions-for-yarn)
+- [Installation](#installation)
+  - [Install mkcert](#install-mkcert)
+  - [Create certificates](#create-certificates)
+  - [Clone the repository](#clone-the-repository)
+  - [Copy certificates to project folder](#copy-certificates-to-project-folder)
+  - [Install certificates](#install-certificates)
+- [Configuration](#configuration)
+  - [Create .env file](#create-env-file)
+  - [Edit Windows host files](#edit-windows-host-files)
+  - [Login on GitHub package repository](#login-on-github-package-repository)
+- [Usage](#usage)
+  - [Install dependencies](#install-dependencies)
+  - [Observations](#observations)
+  - [Run application](#run-application)
+- [Conclusion](#conclusion)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Introduction
 
-### `yarn test`
+Simple Rule of 3 calculator in React.Js
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Click here](https://rule-of-3.jm.app.br) to access the demo published on AWS server.
 
-### `yarn build`
+I based the application on the Material Designer system, leveraging my expertise as a senior front-end developer focusing on React with TypeScript. To streamline the development process, I utilized my own developer theme called Mui Theme, which aligns with Mui Core V5. This theme serves as a centralized resource for setting up and defining components, allowing me to efficiently manage and maintain multiple projects in a single place. If you'd like to explore the Mui Theme, you can find it at [Mui Theme](https://mui-theme.jm.app.br). This approach not only enhances consistency across projects but also simplifies maintenance, making it easier to update and customize the components as needed.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Requirements
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Before proceeding with the installation, make sure you have the following prerequisites installed:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [Node.js](https://nodejs.org/en/download/)
+- [Yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable)
 
-### `yarn eject`
+### Ensure permissions for yarn
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Run the following command in PowerShell as an administrator:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+Set-ExecutionPolicy Unrestricted
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Note: If you don't want to run on HTTPS, you can skip steps 2, 3, 5, 6, and 8.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Installation
 
-## Learn More
+### Install mkcert
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To install mkcert, run the following command:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn global add mkcert
+```
 
-### Code Splitting
+### Create certificates
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Create the certificates using the following commands:
 
-### Analyzing the Bundle Size
+```bash
+mkcert create-ca --organization "ca_name" --country-code "BR" --state "State Name" --locality "City Name"
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```bash
+mkcert create-cert --domains dev.jm.app.br
+```
 
-### Making a Progressive Web App
+Result:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![Certificates Results](./readme_images/01.png)
 
-### Advanced Configuration
+### Clone the repository
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Clone the repository using Git:
 
-### Deployment
+```bash
+git clone https://github.com/J-Meira/rule-of-3
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Copy certificates to project folder
 
-### `yarn build` fails to minify
+Copy the certificates to the project folder:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![Folder to save certificates](./readme_images/02.png)
+
+### Install certificates
+
+ATTENTION: Make sure the browser is closed before proceeding.
+
+#### CA:
+
+![Certificate installation](./readme_images/03.png)<br>
+![Certificate installation](./readme_images/04.png)<br>
+![Certificate installation](./readme_images/05.png)<br>
+![Certificate installation](./readme_images/06.png)
+
+#### dev.jm.app.br:
+
+![Certificate installation](./readme_images/07.png)
+
+(Same process as the previous certificate)
+
+## Configuration
+
+### Create .env file
+
+Create a `.env` file in the project root directory and add the following environment variables:
+
+```bash
+REACT_APP_VERSION=v-0.0.1
+REACT_APP_V_DATE=2022-02-18T20:21:52
+PORT=3006
+# The following should be set only if the certificates were created and installed
+HOST=dev.jm.app.br
+HTTPS=true
+SSL_CRT_FILE=./.ssl/cert.crt
+SSL_KEY_FILE=./.ssl/cert.key
+```
+
+### Edit Windows host files
+
+Follow these steps to edit the Windows host files:
+
+1. Open Notepad as administrator.
+2. Open the host file: `C:\Windows\System32\drivers\etc\hosts`
+3. Add the following line at the end of the file:
+
+```bash
+#React local servers
+	127.0.0.1 	dev.jm.app.br
+```
+
+4. Restart the machine.
+
+### Login on GitHub package repository
+
+To login to the GitHub package repository, run the following command:
+
+```bash
+yarn login --registry=https://npm.pkg.github.com --scope=@j-meira
+```
+
+## Usage
+
+### Install dependencies
+
+To install the project dependencies, run the following command:
+
+```bash
+yarn
+```
+
+### Observations
+
+If you need to access the application from another machine on the network, remove or rename the "HOST" line in the .env file. Add the IP address of the development machine to the host file on the accessing machine and install the certificates on it. Once this is done, both machines can access the application using the development domain https://dev.jm.app.br:3008.
+
+Example host file entry:
+
+```bash
+#React local servers
+	192.168.0.2 	dev.jm.app.br
+```
+
+### Run application
+
+To run the application, use the following command:
+
+```bash
+yarn start
+```
+
+## Conclusion
+
+Congratulations! You have successfully set up the Marvel Heroes application. After running the application, you should see the expected result in the browser:
+
+![Final result of the process](./readme_images/08.png)
+
+If you have any questions or suggestions for improvement, please contact [J.Meira](https://github.com/J-Meira).
