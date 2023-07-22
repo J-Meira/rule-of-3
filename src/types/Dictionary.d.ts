@@ -3,16 +3,17 @@ export interface IDictionary {
 }
 
 export interface IDictionaryLanguage {
-  Developed: string;
-  SettingsOpen: string;
-  Settings: string;
-  Language: string;
-  DarkMode: string;
-  LightMode: string;
-  Required: string;
-  Reset: string;
-  Calculate: string;
-  Clear: string;
-  History: string;
-  To: string;
+  calculate: string;
+  clear: string;
+  darkMode: string;
+  developed: string;
+  history: string;
+  language: string;
+  lightMode: string;
+  repeated: string;
+  required: string;
+  reset: string;
+  settings: string;
+  settingsOpen: string;
+  to: string;
 }
