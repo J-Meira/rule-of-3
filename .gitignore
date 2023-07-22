@@ -29,7 +29,6 @@ yarn.lock
 
 #workspaces
 .code-workspace
-.vscode
 
 #localssl
 /.ssl

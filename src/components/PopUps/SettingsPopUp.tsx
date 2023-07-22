@@ -23,7 +23,7 @@ export const SettingsPopUp = ({ open, toggle }: IPopUp) => {
     <PopUp
       className='pop-up-list-form'
       name='list-form'
-      title={getDictionary('Settings', language)}
+      title={getDictionary('settings', language)}
       open={open}
       toggle={toggle}
       grided
@@ -32,7 +32,7 @@ export const SettingsPopUp = ({ open, toggle }: IPopUp) => {
       disableRestoreFocus
     >
       <Input
-        label={getDictionary('Language', language)}
+        label={getDictionary('language', language)}
         name='language'
         value={language}
         required
@@ -57,7 +57,7 @@ export const SettingsPopUp = ({ open, toggle }: IPopUp) => {
       >
         <DarkSwitch />
         <Typography sx={{ margin: '0 1rem' }} component='label'>
-          {getDictionary(dark ? 'DarkMode' : 'LightMode', language)}
+          {getDictionary(dark ? 'darkMode' : 'lightMode', language)}
         </Typography>
       </Grid>
     </PopUp>

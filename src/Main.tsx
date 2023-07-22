@@ -3,7 +3,12 @@ import { useEffect, useMemo, useRef } from 'react';
 import { object, number, string, ObjectSchema } from 'yup';
 import { Formik, FormikProps } from 'formik';
 
-import { Button, Input, useMultiContext } from '@j-meira/mui-theme';
+import {
+  Button,
+  Input,
+  useMultiContext,
+  useToast,
+} from '@j-meira/mui-theme';
 import { Card, CardContent, Grid, Paper, Typography } from '@mui/material';
 import { Footer, Header } from './components';
 
@@ -33,27 +38,33 @@ export const Main = () => {
   const schema = useMemo(
     (): ObjectSchema<IOperation> =>
       object({
-        a: number().min(0).required(getDictionary('Required', language)),
-        b: number().min(0).required(getDictionary('Required', language)),
-        c: number().min(0).required(getDictionary('Required', language)),
-        x: string().min(0).nullable(),
+        a: number().required(getDictionary('required', language)),
+        b: number().required(getDictionary('required', language)),
+        c: number().required(getDictionary('required', language)),
+        x: string().nullable(),
       }),
     [language],
   );
 
   const onSubmit = (data: IOperation) => {
-    console.log(data);
-    const { a, b, c } = data;
-    let x = data.x;
-    x = a && b && c ? (b * c) / a : 0;
-    x = Number.isInteger(x) ? x : x.toFixed(2);
-    dispatch(
-      addOperation({
-        ...data,
-        x: x,
-      }),
-    );
-    formRef.current?.setFieldValue('x', x);
+    if (
+      history[0] &&
+      JSON.stringify(history[0]) === JSON.stringify(data)
+    ) {
+      useToast.warning(getDictionary('repeated', language));
+    } else {
+      const { a, b, c } = data;
+      let x = data.x;
+      x = a && b && c ? (b * c) / a : 0;
+      x = Number.isInteger(x) ? x : x.toFixed(2);
+      dispatch(
+        addOperation({
+          ...data,
+          x: x,
+        }),
+      );
+      formRef.current?.setFieldValue('x', x);
+    }
   };
 
   const KeySpect = (
@@ -101,6 +112,7 @@ export const Main = () => {
                   name='a'
                   label='A'
                   model='number'
+                  decimal
                   autoFocus
                   onKeyDown={KeySpect}
                   grid={{
@@ -117,12 +129,13 @@ export const Main = () => {
                   justifyContent='center'
                   alignItems='center'
                 >
-                  {getDictionary('To', language)}
+                  {getDictionary('to', language)}
                 </Grid>
                 <Input
                   name='b'
                   label='B'
                   model='number'
+                  decimal
                   onKeyDown={KeySpect}
                   grid={{
                     lg: 4,
@@ -150,6 +163,7 @@ export const Main = () => {
                   name='c'
                   label='C'
                   model='number'
+                  decimal
                   onKeyDown={KeySpect}
                   grid={{
                     lg: 4,
@@ -165,15 +179,14 @@ export const Main = () => {
                   justifyContent='center'
                   alignItems='center'
                 >
-                  {getDictionary('To', language)}
+                  {getDictionary('to', language)}
                 </Grid>
                 <Input
                   name='x'
                   label='X'
+                  model='number'
                   disabled
                   className='result'
-                  model='number'
-                  onKeyDown={KeySpect}
                   grid={{
                     lg: 4,
                     md: 4,
@@ -188,10 +201,10 @@ export const Main = () => {
                     fullWidth={false}
                     onClick={() => handleReset()}
                   >
-                    {getDictionary('Reset', language)}
+                    {getDictionary('reset', language)}
                   </Button>
                   <Button fullWidth={false} onClick={() => handleSubmit()}>
-                    {getDictionary('Calculate', language)}
+                    {getDictionary('calculate', language)}
                   </Button>
                 </Grid>
               </Grid>
@@ -201,7 +214,7 @@ export const Main = () => {
         <Card className='history'>
           <Button
             className='clear-btn'
-            title={getDictionary('Clear', language)}
+            title={getDictionary('clear', language)}
             model='icon'
             color='secondary'
             onClick={() => dispatch(deleteAll())}
@@ -209,7 +222,7 @@ export const Main = () => {
             <DeleteForeverIcon />
           </Button>
           <Typography variant='h2'>
-            {getDictionary('History', language)}
+            {getDictionary('history', language)}
           </Typography>
           <CardContent className='history-container'>
             {history.map((item, index) => (
@@ -219,7 +232,7 @@ export const Main = () => {
                   {item.a}
                 </Grid>
                 <Grid item xs={2}>
-                  {getDictionary('To', language)}
+                  {getDictionary('to', language)}
                 </Grid>
                 <Grid item xs={4}>
                   {item.b}
@@ -230,7 +243,7 @@ export const Main = () => {
                   {item.c}
                 </Grid>
                 <Grid item xs={2}>
-                  {getDictionary('To', language)}
+                  {getDictionary('to', language)}
                 </Grid>
                 <Grid item xs={4}>
                   {item.x}

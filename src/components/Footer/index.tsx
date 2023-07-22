@@ -38,7 +38,7 @@ export const Footer = () => {
           {process.env.REACT_APP_VERSION}
         </Typography>
         <Typography component='small'>
-          {dictionary[languageEnumState[language]].Developed}
+          {dictionary[languageEnumState[language]].developed}
           <a
             href='https://www.jmcreative.com.br'
             rel='noopener noreferrer'

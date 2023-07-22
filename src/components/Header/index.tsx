@@ -21,7 +21,7 @@ export const Header = () => {
           <img className='logo' src={Logo} alt='Logo ShopList' />
           <Button
             className='settings-btn'
-            title={getDictionary('SettingsOpen', language)}
+            title={getDictionary('settingsOpen', language)}
             model='icon'
             onClick={() => setOpenPopUp(true)}
           >
