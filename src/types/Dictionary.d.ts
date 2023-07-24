@@ -16,4 +16,6 @@ export interface IDictionaryLanguage {
   settings: string;
   settingsOpen: string;
   to: string;
+  update: string;
+  version: string;
 }
