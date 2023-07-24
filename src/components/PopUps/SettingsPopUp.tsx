@@ -8,11 +8,10 @@ import { Grid, Typography } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../../redux';
 
-import { IPopUp } from '.';
-
 import { languageEnum } from '../../enums';
 import { handleLanguage } from '../../redux/slices';
 import { enumToList, getDictionary } from '../../utils';
+import { IPopUp } from '../../types';
 
 export const SettingsPopUp = ({ open, toggle }: IPopUp) => {
   const dispatch = useAppDispatch();

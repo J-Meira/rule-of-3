@@ -83,7 +83,7 @@ export const Main = () => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(removeLoading());
-    }, 2000);
+    }, 1000);
 
     // eslint-disable-next-line
   }, []);

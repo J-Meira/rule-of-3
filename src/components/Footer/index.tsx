@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import { Paper, Popover, Typography } from '@mui/material';
 import { useAppSelector } from '../../redux';
-import { dictionary, languageEnumState } from '../../enums';
+import { getDictionary } from '../../utils';
 
 export const Footer = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -38,7 +38,7 @@ export const Footer = () => {
           {process.env.REACT_APP_VERSION}
         </Typography>
         <Typography component='small'>
-          {dictionary[languageEnumState[language]].developed}
+          {getDictionary('developed', language)}
           <a
             href='https://www.jmcreative.com.br'
             rel='noopener noreferrer'
