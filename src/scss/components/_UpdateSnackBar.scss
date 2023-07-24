@@ -1,0 +1,14 @@
+.MuiSnackbarContent-root {
+  background-color: $secondary !important;
+  color: $white !important;
+
+  .MuiSnackbarContent-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      margin-right: 1rem;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import { store } from './redux';
 
-import { Loading } from './components';
+import { Loading, UpdateSnackBar } from './components';
 import { MuiProvider } from './MuiProvider';
 import { Main } from './Main';
 
@@ -10,6 +10,7 @@ export const App = () => (
     <MuiProvider>
       <Main />
       <Loading />
+      <UpdateSnackBar />
     </MuiProvider>
   </Provider>
 );

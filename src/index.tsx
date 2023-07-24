@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 import './scss/index.scss';
@@ -14,7 +13,5 @@ root.render(
     <App />
   </React.StrictMode>,
 );
-
-serviceWorkerRegistration.register();
 
 reportWebVitals();

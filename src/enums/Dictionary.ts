@@ -15,6 +15,8 @@ export const dictionary: IDictionary = {
     settings: 'Settings',
     settingsOpen: 'Open settings page',
     to: 'to:',
+    update: 'Update Now',
+    version: 'A new version of this App is available',
   },
   es: {
     calculate: 'Calcular',
@@ -30,6 +32,8 @@ export const dictionary: IDictionary = {
     settings: 'Configuración',
     settingsOpen: 'Abrir página de configuración',
     to: 'a:',
+    update: 'Actualizar ahora',
+    version: 'Una nueva versión de esta aplicación está disponible',
   },
   pt: {
     calculate: 'Calcular',
@@ -45,5 +49,7 @@ export const dictionary: IDictionary = {
     settings: 'Configurações',
     settingsOpen: 'Abris página de configurações',
     to: 'para:',
+    update: 'Atualizar Agora',
+    version: 'Uma nova versão desse aplicativo está disponível',
   },
 };
