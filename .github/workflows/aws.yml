@@ -1,6 +1,9 @@
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - latest*
+  # release:
+  #   types: [published]
 
 name: AWS
 
