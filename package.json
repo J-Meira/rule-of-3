@@ -1,6 +1,6 @@
 {
   "name": "rule-of-3",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "dependencies": {
     "@j-meira/mui-theme": "^0.4.1",
