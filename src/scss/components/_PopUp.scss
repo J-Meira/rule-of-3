@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .pop-up {
   .MuiDialogTitle-root {
     background-color: $primary;
@@ -6,9 +8,9 @@
     justify-content: space-evenly;
   }
   .MuiDialogContent-root {
-    padding: 0 !important;
+    // padding: 0 !important;
     .MuiGrid-item {
-      padding: 12px !important;
+      // padding: 12px !important;
     }
   }
   .MuiDialogActions-root {

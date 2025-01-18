@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import { Paper, Popover, Typography } from '@mui/material';
+
 import { useAppSelector } from '../../redux';
 import { getDictionary } from '../../utils';
 
@@ -18,7 +19,7 @@ export const Footer = () => {
   };
 
   const getReleaseDate = () => {
-    return moment(process.env.REACT_APP_V_DATE || '2022-05-04T13:23:52')
+    return dayjs(import.meta.env.VITE_V_DATE || '2022-05-04T13:23:52')
       .subtract(3, 'hours')
       .format('MM/DD/YYYY - hh:mm A');
   };
@@ -29,13 +30,13 @@ export const Footer = () => {
     <footer>
       <Paper square elevation={4}>
         <Typography
-          component='small'
-          aria-owns={openPopover ? 'version-date-popover' : undefined}
           aria-haspopup='true'
+          aria-owns={openPopover ? 'version-date-popover' : undefined}
+          component='small'
           onMouseEnter={handlePopoverOpen}
           onMouseLeave={handlePopoverClose}
         >
-          {process.env.REACT_APP_VERSION}
+          {import.meta.env.VITE_VERSION}
         </Typography>
         <Typography component='small'>
           {getDictionary('developed', language)}
@@ -46,29 +47,29 @@ export const Footer = () => {
           >
             <b>JM Creative</b>
           </a>{' '}
-          © 2007 - {moment().year()}
+          © 2007 - {dayjs().year()}
         </Typography>
         <Popover
-          id='version-date-popover'
-          sx={{
-            pointerEvents: 'none',
-          }}
-          open={openPopover}
           anchorEl={anchorEl}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left',
           }}
+          disableRestoreFocus
+          id='version-date-popover'
+          onClose={handlePopoverClose}
+          open={openPopover}
+          sx={{
+            pointerEvents: 'none',
+          }}
           transformOrigin={{
             vertical: 'top',
             horizontal: 'left',
           }}
-          onClose={handlePopoverClose}
-          disableRestoreFocus
         >
-          <Typography
-            sx={{ p: 1 }}
-          >{`${getReleaseDate()} (UTC-3)`}</Typography>
+          <Typography sx={{ p: 1 }}>
+            {`${getReleaseDate()} (UTC-3)`}
+          </Typography>
         </Popover>
       </Paper>
     </footer>

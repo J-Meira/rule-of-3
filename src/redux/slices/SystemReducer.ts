@@ -1,7 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { DialogProps } from '@j-meira/mui-theme';
+
 import { RootState } from '..';
 
-import { DialogProps } from '@j-meira/mui-theme';
 import { ISystemState } from '../../types';
 import { getUserLanguage } from '../../utils';
 

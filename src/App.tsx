@@ -1,16 +1,18 @@
 import { Provider } from 'react-redux';
-import { store } from './redux';
 
-import { Loading, UpdateSnackBar } from './components';
+import { Loading, PWABadge } from './components';
+
 import { MuiProvider } from './MuiProvider';
 import { Main } from './Main';
+
+import { store } from './redux';
 
 export const App = () => (
   <Provider store={store}>
     <MuiProvider>
       <Main />
       <Loading />
-      <UpdateSnackBar />
+      <PWABadge />
     </MuiProvider>
   </Provider>
 );

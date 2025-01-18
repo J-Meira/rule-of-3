@@ -4,14 +4,14 @@ import {
   PopUp,
   useMultiContext,
 } from '@j-meira/mui-theme';
-import { Grid, Typography } from '@mui/material';
+import { Grid2, Typography } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../../redux';
 
 import { languageEnum } from '../../enums';
 import { handleLanguage } from '../../redux/slices';
-import { enumToList, getDictionary } from '../../utils';
 import { IPopUp } from '../../types';
+import { enumToList, getDictionary } from '../../utils';
 
 export const SettingsPopUp = ({ open, toggle }: IPopUp) => {
   const dispatch = useAppDispatch();
@@ -20,45 +20,39 @@ export const SettingsPopUp = ({ open, toggle }: IPopUp) => {
 
   return (
     <PopUp
+      action={toggle}
       className='pop-up-list-form'
-      name='list-form'
-      title={getDictionary('settings', language)}
-      open={open}
-      toggle={toggle}
+      disableRestoreFocus
       grided
       maxWidth='sm'
-      action={toggle}
-      disableRestoreFocus
+      name='list-form'
+      open={open}
+      title={getDictionary('settings', language)}
+      toggle={toggle}
     >
       <Input
-        label={getDictionary('language', language)}
-        name='language'
-        value={language}
-        required
-        model='select'
-        isNoFormik
-        NoNativeOptions
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          dispatch(handleLanguage(Number(e.target.value)))
-        }
-        options={enumToList(languageEnum)}
         grid={{
           md: 12,
           lg: 12,
         }}
+        label={getDictionary('language', language)}
+        localControl
+        model='select'
+        name='language'
+        noNativeOptions
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          dispatch(handleLanguage(Number(e.target.value)))
+        }
+        options={enumToList(languageEnum)}
+        required
+        value={language}
       />
-      <Grid
-        item
-        xs={12}
-        display='flex'
-        alignItems='center'
-        flexWrap='wrap'
-      >
+      <Grid2 size={12} display='flex' alignItems='center' flexWrap='wrap'>
         <DarkSwitch />
         <Typography sx={{ margin: '0 1rem' }} component='label'>
           {getDictionary(dark ? 'darkMode' : 'lightMode', language)}
         </Typography>
-      </Grid>
+      </Grid2>
     </PopUp>
   );
 };

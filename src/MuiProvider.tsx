@@ -1,4 +1,5 @@
 import { MultiProvider } from '@j-meira/mui-theme';
+
 import { useAppSelector } from './redux';
 import { IMuiProviderProps } from './types';
 

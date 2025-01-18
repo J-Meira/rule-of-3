@@ -1,7 +1,5 @@
-@import '~@j-meira/mui-theme/dist/scss/index.scss';
+@use '@j-meira/mui-theme/dist/scss/index.scss';
 
-@import './variables';
+@use './components';
 
-@import './components/index';
-
-@import './Main';
+@use './Main';

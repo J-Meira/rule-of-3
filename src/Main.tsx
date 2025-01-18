@@ -9,16 +9,23 @@ import {
   useMultiContext,
   useToast,
 } from '@j-meira/mui-theme';
-import { Card, CardContent, Grid, Paper, Typography } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Grid2,
+  Paper,
+  Typography,
+} from '@mui/material';
+import {
+  MdClose as CloseIcon,
+  MdDeleteForever as DeleteForeverIcon,
+} from 'react-icons/md';
+
 import { Footer, Header } from './components';
 
 import { useAppDispatch, useAppSelector } from './redux';
-import {
-  Close as CloseIcon,
-  DeleteForever as DeleteForeverIcon,
-} from '@mui/icons-material';
-import { IOperation } from './types';
 import { addOperation, deleteAll, removeLoading } from './redux/slices';
+import { IOperation } from './types';
 import { getDictionary } from './utils';
 
 const initialOperation: IOperation = {
@@ -106,8 +113,8 @@ export const Main = () => {
         >
           {({ handleReset, handleSubmit }) => (
             <form noValidate onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                <Grid item xs={1}></Grid>
+              <Grid2 container spacing={2}>
+                <Grid2 size={1}></Grid2>
                 <Input
                   name='a'
                   label='A'
@@ -122,15 +129,14 @@ export const Main = () => {
                     xs: 4,
                   }}
                 />
-                <Grid
-                  item
-                  xs={2}
+                <Grid2
+                  size={2}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
                 >
                   {getDictionary('to', language)}
-                </Grid>
+                </Grid2>
                 <Input
                   name='b'
                   label='B'
@@ -144,10 +150,9 @@ export const Main = () => {
                     xs: 4,
                   }}
                 />
-                <Grid item xs={1}></Grid>
-                <Grid
-                  item
-                  xs={12}
+                <Grid2 size={1}></Grid2>
+                <Grid2
+                  size={12}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
@@ -157,8 +162,8 @@ export const Main = () => {
                   }}
                 >
                   <CloseIcon />
-                </Grid>
-                <Grid item xs={1}></Grid>
+                </Grid2>
+                <Grid2 size={1}></Grid2>
                 <Input
                   name='c'
                   label='C'
@@ -172,15 +177,14 @@ export const Main = () => {
                     xs: 4,
                   }}
                 />
-                <Grid
-                  item
-                  xs={2}
+                <Grid2
+                  size={2}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
                 >
                   {getDictionary('to', language)}
-                </Grid>
+                </Grid2>
                 <Input
                   name='x'
                   label='X'
@@ -194,8 +198,8 @@ export const Main = () => {
                     xs: 4,
                   }}
                 />
-                <Grid item xs={1}></Grid>
-                <Grid item xs={12} className='actions'>
+                <Grid2 size={1}></Grid2>
+                <Grid2 size={12} className='actions'>
                   <Button
                     color='secondary'
                     fullWidth={false}
@@ -206,8 +210,8 @@ export const Main = () => {
                   <Button fullWidth={false} onClick={() => handleSubmit()}>
                     {getDictionary('calculate', language)}
                   </Button>
-                </Grid>
-              </Grid>
+                </Grid2>
+              </Grid2>
             </form>
           )}
         </Formik>
@@ -226,30 +230,18 @@ export const Main = () => {
           </Typography>
           <CardContent className='history-container'>
             {history.map((item, index) => (
-              <Grid key={'operation' + index} container spacing={2}>
-                <Grid item xs={1}></Grid>
-                <Grid item xs={4}>
-                  {item.a}
-                </Grid>
-                <Grid item xs={2}>
-                  {getDictionary('to', language)}
-                </Grid>
-                <Grid item xs={4}>
-                  {item.b}
-                </Grid>
-                <Grid item xs={1}></Grid>
-                <Grid item xs={1}></Grid>
-                <Grid item xs={4}>
-                  {item.c}
-                </Grid>
-                <Grid item xs={2}>
-                  {getDictionary('to', language)}
-                </Grid>
-                <Grid item xs={4}>
-                  {item.x}
-                </Grid>
-                <Grid item xs={1}></Grid>
-              </Grid>
+              <Grid2 key={'operation' + index} container spacing={2}>
+                <Grid2 size={1}></Grid2>
+                <Grid2 size={4}>{item.a}</Grid2>
+                <Grid2 size={2}>{getDictionary('to', language)}</Grid2>
+                <Grid2 size={4}>{item.b}</Grid2>
+                <Grid2 size={1}></Grid2>
+                <Grid2 size={1}></Grid2>
+                <Grid2 size={4}>{item.c}</Grid2>
+                <Grid2 size={2}>{getDictionary('to', language)}</Grid2>
+                <Grid2 size={4}>{item.x}</Grid2>
+                <Grid2 size={1}></Grid2>
+              </Grid2>
             ))}
           </CardContent>
         </Card>
