@@ -17,38 +17,39 @@ jobs:
         run: |
           echo "TAG_NAME=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
-      - name: Make envfile
+      - name: Make .env file
         run: |
           cat > .env
-          echo "REACT_APP_VERSION=${{ env.TAG_NAME }}" >> .env
-          echo "REACT_APP_V_DATE=$(date +'%Y-%m-%dT%H:%M:%S')" >> .env
+          echo "VITE_VERSION=${{ env.TAG_NAME }}" >> .env
+          echo "VITE_V_DATE=$(date +'%Y-%m-%dT%H:%M:%S')" >> .env
           echo "$(<.env)"
 
       - name: Setup Node
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.16
+          node-version: 22.12.0
 
       - name: Install NPM Login
-        run: yarn global add npm-cli-login
+        run: npm install -g npm-cli-login
 
       - name: NPM Login
         run: NPM_USER=${{ vars.NPM_USER }} NPM_PASS=${{ secrets.NPM_PASS }} NPM_EMAIL=${{ vars.NPM_EMAIL }} NPM_REGISTRY=${{ vars.NPM_URL }} NPM_SCOPE=@j-meira npm-cli-login
 
-      - name: Install depends
-        run: |
-          yarn --ignore-scripts
+      - name: Install PNPM
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts
 
       - name: Build
-        run: |
-          yarn build
+        run: pnpm build
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@master
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: sa-east-1
 
       - name: Deploy to S3
-        run: aws s3 sync ./build/ s3://rule-of-3.jm.app.br --delete
+        run: aws s3 sync ./dist/ s3://${{ vars.S3_BUCKET }} --delete
