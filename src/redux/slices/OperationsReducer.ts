@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 import { IOperation, IOperationsState } from '../../types';
 
 const localLists = localStorage.getItem('RO3_O_H') || '[]';

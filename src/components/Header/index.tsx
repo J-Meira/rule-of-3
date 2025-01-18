@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
 import { Button, Header as MuiHeader } from '@j-meira/mui-theme';
-import { Settings as SettingsIcon } from '@mui/icons-material';
-
-import Logo from '../../assets/logo-invert.svg';
+import { MdSettings as SettingsIcon } from 'react-icons/md';
 
 import { SettingsPopUp } from '..';
 
@@ -18,12 +16,16 @@ export const Header = () => {
     <MuiHeader
       navigation={
         <>
-          <img className='logo' src={Logo} alt='Logo ShopList' />
+          <img
+            alt='Logo Rule of 3'
+            className='logo'
+            src='/assets/logos/logo-invert.svg'
+          />
           <Button
             className='settings-btn'
-            title={getDictionary('settingsOpen', language)}
             model='icon'
             onClick={() => setOpenPopUp(true)}
+            title={getDictionary('settingsOpen', language)}
           >
             <SettingsIcon />
           </Button>

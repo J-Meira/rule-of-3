@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Login Docker
-        uses: docker/login-action@master
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -26,8 +26,8 @@ jobs:
       - name: Make envfile
         run: |
           cat > .env
-          echo "REACT_APP_VERSION=${{ env.TAG_NAME }}" >> .env
-          echo "REACT_APP_V_DATE=$(date +'%Y-%m-%dT%H:%M:%S')" >> .env
+          echo "VITE_VERSION=${{ env.TAG_NAME }}" >> .env
+          echo "VITE_V_DATE=$(date +'%Y-%m-%dT%H:%M:%S')" >> .env
           echo "$(<.env)"
 
       - name: Build and Push Docker Image
