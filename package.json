@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "dependencies": {
-    "@j-meira/mui-theme": "^1.9.2",
+    "@j-meira/mui-theme": "^2.0.0",
     "@mui/material": "^7.3.5",
     "@reduxjs/toolkit": "^2.5.0",
     "dayjs": "^1.11.19",

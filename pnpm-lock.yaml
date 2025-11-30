@@ -19,14 +19,11 @@ importers:
         specifier: ^11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0)
       '@j-meira/mui-theme':
-        specifier: ^1.9.2
-        version: 1.9.2(@mui/system@7.3.5(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(csstype@3.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^2.0.0
+        version: 2.0.0(@mui/system@7.3.5(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(csstype@3.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@mui/material':
         specifier: ^7.3.5
         version: 7.3.5(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      '@mui/x-date-pickers':
-        specifier: ^8.19.0
-        version: 8.19.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@mui/material@7.3.5(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mui/system@7.3.5(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(dayjs@1.11.19)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@reduxjs/toolkit':
         specifier: ^2.5.0
         version: 2.5.0(react-redux@9.2.0(@types/react@19.0.7)(react@19.2.0)(redux@5.0.1))(react@19.2.0)
@@ -36,9 +33,6 @@ importers:
       formik:
         specifier: ^2.4.9
         version: 2.4.9(@types/react@19.0.7)(react@19.2.0)
-      notistack:
-        specifier: ^3.0.2
-        version: 3.0.2(csstype@3.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -987,8 +981,8 @@ packages:
     resolution: {integrity: sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==}
     engines: {node: '>=18.18'}
 
-  '@j-meira/mui-theme@1.9.2':
-    resolution: {integrity: sha512-LiAhk2hnppaRbSj6mL1YuM9pWGHarIbnOXcOm/ecrIR9rpOoZSaFzgbSR+OkImP2M3IohWao5h3W2d2C0hdOFA==, tarball: https://npm.pkg.github.com/download/@j-meira/mui-theme/1.9.2/69dd03cb22106fe2ba55f177f887e3b19e4b7483}
+  '@j-meira/mui-theme@2.0.0':
+    resolution: {integrity: sha512-k5tccoGqvRrH+3vufN8DwoASpW5DiOOO1YH6mi/HhLotuDq339cUblE0XJ6FWBjKRi+di1LP6LV3kBWGQP7/eQ==, tarball: https://npm.pkg.github.com/download/@j-meira/mui-theme/2.0.0/378e5e35c8d079d3c300a6cdc4be11e8a94ccb44}
     peerDependencies:
       react: ^19.2.0
       react-dom: ^19.2.0
@@ -4385,7 +4379,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.1': {}
 
-  '@j-meira/mui-theme@1.9.2(@mui/system@7.3.5(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(csstype@3.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@j-meira/mui-theme@2.0.0(@mui/system@7.3.5(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(csstype@3.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.0.7)(react@19.2.0)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0)
