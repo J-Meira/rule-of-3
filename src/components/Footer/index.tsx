@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 
 import { Paper, Popover, Typography } from '@mui/material';
@@ -6,23 +6,26 @@ import { Paper, Popover, Typography } from '@mui/material';
 import { useAppSelector } from '../../redux';
 import { getDictionary } from '../../utils';
 
-export const Footer = () => {
+export const Footer = memo(() => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const language = useAppSelector((state) => state.system.language);
 
-  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handlePopoverOpen = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget);
+    },
+    [],
+  );
 
-  const handlePopoverClose = () => {
+  const handlePopoverClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
-  const getReleaseDate = () => {
+  const releaseDate = useMemo(() => {
     return dayjs(import.meta.env.VITE_V_DATE || '2022-05-04T13:23:52')
       .subtract(3, 'hours')
       .format('MM/DD/YYYY - hh:mm A');
-  };
+  }, []);
 
   const openPopover = Boolean(anchorEl);
 
@@ -41,11 +44,11 @@ export const Footer = () => {
         <Typography component='small'>
           {getDictionary('developed', language)}
           <a
-            href='https://www.jmcreative.com.br'
+            href='https://www.jm.app.br'
             rel='noopener noreferrer'
             target='_blank'
           >
-            <b>JM Creative</b>
+            <b>JM APP</b>
           </a>{' '}
           © 2007 - {dayjs().year()}
         </Typography>
@@ -67,11 +70,11 @@ export const Footer = () => {
             horizontal: 'left',
           }}
         >
-          <Typography sx={{ p: 1 }}>
-            {`${getReleaseDate()} (UTC-3)`}
-          </Typography>
+          <Typography sx={{ p: 1 }}>{`${releaseDate} (UTC-3)`}</Typography>
         </Popover>
       </Paper>
     </footer>
   );
-};
+});
+
+Footer.displayName = 'Footer';
