@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { Paper, Box, CircularProgress } from '@mui/material';
 import { useMultiContext } from '@j-meira/mui-theme';
 
 import { useAppSelector } from '../../redux';
 import { getLoading } from '../../redux/slices';
 
-export const Loading = () => {
+export const Loading = memo(() => {
   const { dark } = useMultiContext();
   const isLoading = useAppSelector(getLoading);
 
@@ -67,4 +68,6 @@ export const Loading = () => {
       </Paper>
     </>
   );
-};
+});
+
+Loading.displayName = 'Loading';

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 import { Button, Header as MuiHeader } from '@j-meira/mui-theme';
 import { MdSettings as SettingsIcon } from 'react-icons/md';
@@ -8,9 +8,17 @@ import { SettingsPopUp } from '..';
 import { useAppSelector } from '../../redux';
 import { getDictionary } from '../../utils';
 
-export const Header = () => {
+export const Header = memo(() => {
   const [openPopUp, setOpenPopUp] = useState(false);
   const language = useAppSelector((state) => state.system.language);
+
+  const handleOpenSettings = useCallback(() => {
+    setOpenPopUp(true);
+  }, []);
+
+  const handleTogglePopUp = useCallback(() => {
+    setOpenPopUp((prev) => !prev);
+  }, []);
 
   return (
     <MuiHeader
@@ -24,18 +32,17 @@ export const Header = () => {
           <Button
             className='settings-btn'
             model='icon'
-            onClick={() => setOpenPopUp(true)}
+            onClick={handleOpenSettings}
             title={getDictionary('settingsOpen', language)}
           >
             <SettingsIcon />
           </Button>
 
-          <SettingsPopUp
-            open={openPopUp}
-            toggle={() => setOpenPopUp(!openPopUp)}
-          />
+          <SettingsPopUp open={openPopUp} toggle={handleTogglePopUp} />
         </>
       }
     />
   );
-};
+});
+
+Header.displayName = 'Header';

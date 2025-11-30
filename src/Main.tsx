@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { object, number, string, ObjectSchema } from 'yup';
 import { Formik, FormikProps } from 'formik';
@@ -9,13 +9,7 @@ import {
   useMultiContext,
   useToast,
 } from '@j-meira/mui-theme';
-import {
-  Card,
-  CardContent,
-  Grid2,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Card, CardContent, Grid, Paper, Typography } from '@mui/material';
 import {
   MdClose as CloseIcon,
   MdDeleteForever as DeleteForeverIcon,
@@ -59,33 +53,43 @@ export const Main = () => {
       JSON.stringify(history[0]) === JSON.stringify(data)
     ) {
       useToast.warning(getDictionary('repeated', language));
-    } else {
-      const { a, b, c } = data;
-      let x = data.x;
-      x = a && b && c ? (b * c) / a : 0;
-      x = Number.isInteger(x) ? x : x.toFixed(2);
-      dispatch(
-        addOperation({
-          ...data,
-          x: x,
-        }),
-      );
-      formRef.current?.setFieldValue('x', x);
+      return;
     }
+
+    const { a, b, c } = data;
+    const calculatedValue = a && b && c ? (b * c) / a : 0;
+    const x = Number.isInteger(calculatedValue)
+      ? calculatedValue
+      : calculatedValue.toFixed(2);
+
+    dispatch(
+      addOperation({
+        ...data,
+        x: x,
+      }),
+    );
+    formRef.current?.setFieldValue('x', x);
   };
 
-  const KeySpect = (
-    e: React.KeyboardEvent<
-      | HTMLInputElement
-      | HTMLButtonElement
-      | HTMLDivElement
-      | HTMLTextAreaElement
-    >,
-  ) => {
-    if (e.key === 'Enter' || e.key === 'NumpadEnter') {
-      formRef.current?.handleSubmit();
-    }
-  };
+  const handleDeleteAll = useCallback(() => {
+    dispatch(deleteAll());
+  }, [dispatch]);
+
+  const KeySpect = useCallback(
+    (
+      e: React.KeyboardEvent<
+        | HTMLInputElement
+        | HTMLButtonElement
+        | HTMLDivElement
+        | HTMLTextAreaElement
+      >,
+    ) => {
+      if (e.key === 'Enter' || e.key === 'NumpadEnter') {
+        formRef.current?.handleSubmit();
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -113,8 +117,8 @@ export const Main = () => {
         >
           {({ handleReset, handleSubmit }) => (
             <form noValidate onSubmit={handleSubmit}>
-              <Grid2 container spacing={2}>
-                <Grid2 size={1}></Grid2>
+              <Grid container spacing={2}>
+                <Grid size={1}></Grid>
                 <Input
                   name='a'
                   label='A'
@@ -129,14 +133,14 @@ export const Main = () => {
                     xs: 4,
                   }}
                 />
-                <Grid2
+                <Grid
                   size={2}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
                 >
                   {getDictionary('to', language)}
-                </Grid2>
+                </Grid>
                 <Input
                   name='b'
                   label='B'
@@ -150,8 +154,8 @@ export const Main = () => {
                     xs: 4,
                   }}
                 />
-                <Grid2 size={1}></Grid2>
-                <Grid2
+                <Grid size={1}></Grid>
+                <Grid
                   size={12}
                   display='flex'
                   justifyContent='center'
@@ -162,8 +166,8 @@ export const Main = () => {
                   }}
                 >
                   <CloseIcon />
-                </Grid2>
-                <Grid2 size={1}></Grid2>
+                </Grid>
+                <Grid size={1}></Grid>
                 <Input
                   name='c'
                   label='C'
@@ -177,14 +181,14 @@ export const Main = () => {
                     xs: 4,
                   }}
                 />
-                <Grid2
+                <Grid
                   size={2}
                   display='flex'
                   justifyContent='center'
                   alignItems='center'
                 >
                   {getDictionary('to', language)}
-                </Grid2>
+                </Grid>
                 <Input
                   name='x'
                   label='X'
@@ -198,8 +202,8 @@ export const Main = () => {
                     xs: 4,
                   }}
                 />
-                <Grid2 size={1}></Grid2>
-                <Grid2 size={12} className='actions'>
+                <Grid size={1}></Grid>
+                <Grid size={12} className='actions'>
                   <Button
                     color='secondary'
                     fullWidth={false}
@@ -210,8 +214,8 @@ export const Main = () => {
                   <Button fullWidth={false} onClick={() => handleSubmit()}>
                     {getDictionary('calculate', language)}
                   </Button>
-                </Grid2>
-              </Grid2>
+                </Grid>
+              </Grid>
             </form>
           )}
         </Formik>
@@ -221,7 +225,7 @@ export const Main = () => {
             title={getDictionary('clear', language)}
             model='icon'
             color='secondary'
-            onClick={() => dispatch(deleteAll())}
+            onClick={handleDeleteAll}
           >
             <DeleteForeverIcon />
           </Button>
@@ -230,18 +234,18 @@ export const Main = () => {
           </Typography>
           <CardContent className='history-container'>
             {history.map((item, index) => (
-              <Grid2 key={'operation' + index} container spacing={2}>
-                <Grid2 size={1}></Grid2>
-                <Grid2 size={4}>{item.a}</Grid2>
-                <Grid2 size={2}>{getDictionary('to', language)}</Grid2>
-                <Grid2 size={4}>{item.b}</Grid2>
-                <Grid2 size={1}></Grid2>
-                <Grid2 size={1}></Grid2>
-                <Grid2 size={4}>{item.c}</Grid2>
-                <Grid2 size={2}>{getDictionary('to', language)}</Grid2>
-                <Grid2 size={4}>{item.x}</Grid2>
-                <Grid2 size={1}></Grid2>
-              </Grid2>
+              <Grid key={'operation' + index} container spacing={2}>
+                <Grid size={1}></Grid>
+                <Grid size={4}>{item.a}</Grid>
+                <Grid size={2}>{getDictionary('to', language)}</Grid>
+                <Grid size={4}>{item.b}</Grid>
+                <Grid size={1}></Grid>
+                <Grid size={1}></Grid>
+                <Grid size={4}>{item.c}</Grid>
+                <Grid size={2}>{getDictionary('to', language)}</Grid>
+                <Grid size={4}>{item.x}</Grid>
+                <Grid size={1}></Grid>
+              </Grid>
             ))}
           </CardContent>
         </Card>

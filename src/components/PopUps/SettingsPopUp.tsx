@@ -1,10 +1,11 @@
+import { memo, useCallback, useMemo } from 'react';
 import {
   DarkSwitch,
   Input,
   PopUp,
   useMultiContext,
 } from '@j-meira/mui-theme';
-import { Grid2, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../../redux';
 
@@ -13,10 +14,19 @@ import { handleLanguage } from '../../redux/slices';
 import { IPopUp } from '../../types';
 import { enumToList, getDictionary } from '../../utils';
 
-export const SettingsPopUp = ({ open, toggle }: IPopUp) => {
+export const SettingsPopUp = memo(({ open, toggle }: IPopUp) => {
   const dispatch = useAppDispatch();
   const { dark } = useMultiContext();
   const language = useAppSelector((state) => state.system.language);
+
+  const languageOptions = useMemo(() => enumToList(languageEnum), []);
+
+  const handleLanguageChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(handleLanguage(Number(e.target.value)));
+    },
+    [dispatch],
+  );
 
   return (
     <PopUp
@@ -40,19 +50,19 @@ export const SettingsPopUp = ({ open, toggle }: IPopUp) => {
         model='select'
         name='language'
         noNativeOptions
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          dispatch(handleLanguage(Number(e.target.value)))
-        }
-        options={enumToList(languageEnum)}
+        onChange={handleLanguageChange}
+        options={languageOptions}
         required
         value={language}
       />
-      <Grid2 size={12} display='flex' alignItems='center' flexWrap='wrap'>
+      <Grid size={12} display='flex' alignItems='center' flexWrap='wrap'>
         <DarkSwitch />
         <Typography sx={{ margin: '0 1rem' }} component='label'>
           {getDictionary(dark ? 'darkMode' : 'lightMode', language)}
         </Typography>
-      </Grid2>
+      </Grid>
     </PopUp>
   );
-};
+});
+
+SettingsPopUp.displayName = 'SettingsPopUp';
