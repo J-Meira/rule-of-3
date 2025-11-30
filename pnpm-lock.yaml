@@ -12,12 +12,6 @@ importers:
 
   .:
     dependencies:
-      '@emotion/react':
-        specifier: ^11.14.0
-        version: 11.14.0(@types/react@19.0.7)(react@19.2.0)
-      '@emotion/styled':
-        specifier: ^11.14.1
-        version: 11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0)
       '@j-meira/mui-theme':
         specifier: ^2.0.0
         version: 2.0.0(@mui/system@7.3.5(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(react@19.2.0))(@types/react@19.0.7)(csstype@3.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
