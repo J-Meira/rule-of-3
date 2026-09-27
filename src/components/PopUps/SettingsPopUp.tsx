@@ -55,7 +55,10 @@ export const SettingsPopUp = memo(({ open, toggle }: IPopUp) => {
         required
         value={language}
       />
-      <Grid size={12} display='flex' alignItems='center' flexWrap='wrap'>
+      <Grid
+        size={12}
+        sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}
+      >
         <DarkSwitch />
         <Typography sx={{ margin: '0 1rem' }} component='label'>
           {getDictionary(dark ? 'darkMode' : 'lightMode', language)}

@@ -1,30 +1,25 @@
 # Stage 0, "build-stage"
-FROM node:18.16 as build-stage
-ARG NPM_EMAIL
-ARG NPM_USER
-ARG NPM_PASS
-ARG NPM_URL
+FROM node:24-alpine AS build-stage
+ARG NPM_TOKEN
 
 WORKDIR /app
 
 COPY ./nginx.conf /nginx.conf
 
-COPY package*.json /app/
-
-RUN npm install -g npm-cli-login
-
-RUN npm-cli-login -u ${NPM_USER} -p ${NPM_PASS} -e ${NPM_EMAIL} -r ${NPM_URL} -s "@j-meira"
+COPY package.json pnpm-lock.yaml /app/
 
 RUN npm install -g pnpm
 
-RUN pnpm install --ignore-scripts
+RUN printf '@j-meira:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n' "${NPM_TOKEN}" > .npmrc \
+  && pnpm install --frozen-lockfile --ignore-scripts \
+  && rm -f .npmrc
 
 COPY ./ /app/
 
 RUN pnpm build
 
 # Stage 1, "deploy"
-FROM nginx:1.22.1 as deploy-stage
+FROM nginx:1.27-alpine AS deploy-stage
 
 COPY --from=build-stage /app/dist/ /usr/share/nginx/html
 
