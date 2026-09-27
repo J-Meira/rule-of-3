@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY ./nginx.conf /nginx.conf
 
-COPY package.json pnpm-lock.yaml /app/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /app/
 
 RUN npm install -g pnpm
 
