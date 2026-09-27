@@ -56,6 +56,12 @@ export default [
       },
     },
   },
+  {
+    files: ["src/**/index.{ts,tsx}"],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
   prettier,
   {
     ignores: [
