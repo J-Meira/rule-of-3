@@ -135,9 +135,11 @@ export const Main = () => {
                 />
                 <Grid
                   size={2}
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
                 >
                   {getDictionary('to', language)}
                 </Grid>
@@ -157,10 +159,10 @@ export const Main = () => {
                 <Grid size={1}></Grid>
                 <Grid
                   size={12}
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
                   sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     paddingTop: '0 !important',
                     marginBottom: '-16px',
                   }}
@@ -183,9 +185,11 @@ export const Main = () => {
                 />
                 <Grid
                   size={2}
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
                 >
                   {getDictionary('to', language)}
                 </Grid>
