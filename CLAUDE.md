@@ -6,10 +6,11 @@ Project instructions for Claude Code. It replaces the old Copilot instructions.
 
 Rule of 3: a small React PWA that solves rule-of-three calculations, keeps a history, and works in English, Portuguese and Spanish. Published at https://rule-of-3.jm.app.br from GitHub Pages.
 
-- React 19, TypeScript 5.7, Vite 6, `@vitejs/plugin-react`, `vite-plugin-pwa`
+- React 19, TypeScript 6, Vite 8 (rolldown), `@vitejs/plugin-react` 6, `vite-plugin-pwa` 1.x with `@vite-pwa/assets-generator` 1.x
 - `@j-meira/mui-theme` **3.x** (ESM only) on Material UI **9** and MUI X Date Pickers 9. The theme's peer dependencies are installed here directly: `@mui/material`, `@mui/x-date-pickers`, `@emotion/react`, `@emotion/styled`, `formik`, `notistack`, `dayjs`, `react-icons`.
 - Redux Toolkit for state, Formik + Yup for the form, Day.js, SCSS.
-- pnpm 12, Node 22.13+.
+- ESLint 10 flat config: `typescript-eslint`, `@eslint-react/eslint-plugin`, `eslint-plugin-react-hooks` 7, `eslint-plugin-react-refresh`, `eslint-plugin-import-x`, `eslint-config-prettier`.
+- pnpm 12, Node 22.13+ locally, Node 24 in CI and Docker.
 
 ## Commands
 
@@ -21,7 +22,7 @@ pnpm preview
 pnpm lint           # eslint . --max-warnings 0
 ```
 
-`pnpm-workspace.yaml` approves the build scripts pnpm 12 asks about (esbuild, sharp); without it `pnpm build` refuses to run.
+`pnpm-workspace.yaml` approves the build scripts pnpm 12 asks about (esbuild, sharp); without it `pnpm build` refuses to run. It also overrides `sharp` to a single version, because `sharp-ico` still declares an old one. TypeScript stays on 6.x until `typescript-eslint` supports 7.
 
 ## Layout
 

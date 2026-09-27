@@ -1,76 +1,44 @@
-import globals from "globals";
-import pluginImport from "eslint-plugin-import";
-import pluginJs from "@eslint/js";
-import pluginReact from "eslint-plugin-react";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginReactRefresh from "eslint-plugin-react-refresh";
-import prettier from "eslint-config-prettier";
-import tseslint from "@typescript-eslint/eslint-plugin";
-import tsparser from "@typescript-eslint/parser";
+import globals from 'globals';
+import pluginImport from 'eslint-plugin-import-x';
+import pluginJs from '@eslint/js';
+import pluginReact from '@eslint-react/eslint-plugin';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginReactRefresh from 'eslint-plugin-react-refresh';
+import prettier from 'eslint-config-prettier';
+import tseslint from 'typescript-eslint';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+export default tseslint.config(
+  { ignores: ['dist'] },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    files: ['**/*.{ts,tsx}'],
+    ...pluginReact.configs['recommended-typescript'],
+  },
+  pluginReactHooks.configs.flat.recommended,
+  pluginReactRefresh.configs.vite,
+  {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     languageOptions: {
-      parser: tsparser,
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: "module",
-        ecmaFeatures: { jsx: true },
-      },
-      globals: {
-        ...globals.browser,
-        JSX: true, // Add JSX to the global scope
-      },
+      globals: globals.browser,
     },
     plugins: {
-      "@typescript-eslint": tseslint,
-      react: pluginReact,
-      "react-hooks": pluginReactHooks,
-      "react-refresh": pluginReactRefresh,
-      import: pluginImport,
+      'import-x': pluginImport,
     },
     rules: {
-      ...pluginJs.configs.recommended.rules,
-      ...tseslint.configs.recommended.rules,
-      ...pluginReact.configs.recommended.rules,
-      ...pluginReactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-non-null-assertion": "off",
-      "@typescript-eslint/ban-ts-comment": "off",
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      "react/jsx-uses-react": "off",
-      "react/react-in-jsx-scope": "off",
-      "no-undef": "off",
-      "import/newline-after-import": ["error", { count: 1 }],
-    },
-    settings: {
-      react: {
-        version: "detect",
-      },
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'import-x/newline-after-import': ['error', { count: 1 }],
     },
   },
   {
-    files: ["src/**/index.{ts,tsx}"],
+    files: ['src/**/index.{ts,tsx}'],
     rules: {
-      "react-refresh/only-export-components": "off",
+      'react-refresh/only-export-components': 'off',
     },
   },
   prettier,
-  {
-    ignores: [
-      "dist",
-      ".eslintrc.cjs",
-      "storybook-static",
-      "stories",
-      "clean.ts",
-      "copy.ts",
-    ],
-  },
-];
+);

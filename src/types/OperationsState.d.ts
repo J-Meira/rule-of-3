@@ -1,5 +1,5 @@
-import { IOperation } from './Operation';
+import { IHistoryOperation } from './Operation';
 
 export interface IOperationsState {
-  history: IOperation[];
+  history: IHistoryOperation[];
 }
