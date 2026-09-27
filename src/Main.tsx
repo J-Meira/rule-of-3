@@ -92,12 +92,12 @@ export const Main = () => {
   );
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       dispatch(removeLoading());
     }, 1000);
 
-    // eslint-disable-next-line
-  }, []);
+    return () => clearTimeout(timer);
+  }, [dispatch]);
 
   return (
     <>
@@ -237,8 +237,8 @@ export const Main = () => {
             {getDictionary('history', language)}
           </Typography>
           <CardContent className='history-container'>
-            {history.map((item, index) => (
-              <Grid key={'operation' + index} container spacing={2}>
+            {history.map((item) => (
+              <Grid key={item.id} container spacing={2}>
                 <Grid size={1}></Grid>
                 <Grid size={4}>{item.a}</Grid>
                 <Grid size={2}>{getDictionary('to', language)}</Grid>

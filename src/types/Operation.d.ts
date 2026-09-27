@@ -4,3 +4,7 @@ export interface IOperation {
   c?: number | null;
   x?: number | string | null;
 }
+
+export interface IHistoryOperation extends IOperation {
+  id: number;
+}
