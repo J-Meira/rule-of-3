@@ -71,6 +71,7 @@ return <Component />;
 
 ## Deploy
 
+- **Every PR bumps `version` in `package.json`.** Pick the next semver for what the PR ships, and do it in the PR itself, since master only takes reviewed PRs. A release is always tagged `v` + that version (`3.1.2` is released as `v3.1.2`); never create a release whose tag differs from `package.json`.
 - `.github/workflows/pages.yml` builds and deploys `dist/` to GitHub Pages on every published release, or manually from Actions. The version badge comes from the release tag via `.env` (`VITE_VERSION`, `VITE_V_DATE`).
 - `.github/workflows/docker.yml` still builds the Docker image on release; the Dockerfile takes an `AUTH_TOKEN` build arg.
 - Installing `@j-meira/mui-theme` in CI uses `setup-node` with `registry-url` and `NODE_AUTH_TOKEN` from the `AUTH_TOKEN` secret (a GitHub PAT with `read:packages`).
