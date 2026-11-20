@@ -8,7 +8,7 @@ export const MuiProvider = ({ children }: IMuiProviderProps) => {
 
   return (
     <MultiProvider
-      adapterLocalePtBR={language === 3}
+      locale={language === 3 ? 'pt-BR' : 'en'}
       snackAnchorHorizontal='right'
       snackAnchorVertical='top'
       snackAutoHideDuration={3000}
