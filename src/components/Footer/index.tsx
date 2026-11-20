@@ -50,7 +50,7 @@ export const Footer = memo(() => {
           >
             <b>JM APP</b>
           </a>{' '}
-          © 2007 - {dayjs().year()}
+          © 2008 - {dayjs().year()}
         </Typography>
         <Popover
           anchorEl={anchorEl}
