@@ -9,23 +9,34 @@ import { getDictionary } from '../../utils';
 
 const period = 60 * 60 * 1000;
 
-const registerPeriodicSync = (
+const checkForUpdate = async (
   swUrl: string,
   registration: ServiceWorkerRegistration,
 ) => {
-  setInterval(async () => {
-    if ('onLine' in navigator && !navigator.onLine) return;
+  if ('onLine' in navigator && !navigator.onLine) return;
 
-    const resp = await fetch(swUrl, {
+  const resp = await fetch(swUrl, {
+    cache: 'no-store',
+    headers: {
       cache: 'no-store',
-      headers: {
-        cache: 'no-store',
-        'cache-control': 'no-cache',
-      },
-    });
+      'cache-control': 'no-cache',
+    },
+  }).catch(() => null);
 
-    if (resp?.status === 200) await registration.update();
-  }, period);
+  if (resp?.status === 200)
+    await registration.update().catch(() => undefined);
+};
+
+const registerUpdateChecks = (
+  swUrl: string,
+  registration: ServiceWorkerRegistration,
+) => {
+  setInterval(() => checkForUpdate(swUrl, registration), period);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible')
+      checkForUpdate(swUrl, registration);
+  });
 };
 
 export const PWABadge = memo(() => {
@@ -38,7 +49,7 @@ export const PWABadge = memo(() => {
   } = useRegisterSW({
     onRegisteredSW(swUrl, registration) {
       if (registration?.active?.state === 'activated') {
-        registerPeriodicSync(swUrl, registration);
+        registerUpdateChecks(swUrl, registration);
         return;
       }
 
@@ -47,7 +58,7 @@ export const PWABadge = memo(() => {
       registration.installing.addEventListener('statechange', (e) => {
         const sw = e.target as ServiceWorker;
         if (sw.state === 'activated')
-          registerPeriodicSync(swUrl, registration);
+          registerUpdateChecks(swUrl, registration);
       });
     },
   });
