@@ -1,6 +1,6 @@
 # Stage 0, "build-stage"
 FROM node:24-alpine AS build-stage
-ARG NPM_TOKEN
+ARG AUTH_TOKEN
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /app/
 
 RUN npm install -g pnpm
 
-RUN printf '@j-meira:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n' "${NPM_TOKEN}" > .npmrc \
+RUN printf '@j-meira:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n' "${AUTH_TOKEN}" > .npmrc \
   && pnpm install --frozen-lockfile --ignore-scripts \
   && rm -f .npmrc
 

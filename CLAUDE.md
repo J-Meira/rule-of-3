@@ -72,5 +72,5 @@ return <Component />;
 ## Deploy
 
 - `.github/workflows/pages.yml` builds and deploys `dist/` to GitHub Pages on every published release, or manually from Actions. The version badge comes from the release tag via `.env` (`VITE_VERSION`, `VITE_V_DATE`).
-- `.github/workflows/docker.yml` still builds the Docker image on release; the Dockerfile takes an `NPM_TOKEN` build arg.
-- Installing `@j-meira/mui-theme` in CI uses `setup-node` with `registry-url` and `NODE_AUTH_TOKEN` from the `NPM_PASS` secret (a GitHub PAT with `read:packages`).
+- `.github/workflows/docker.yml` still builds the Docker image on release; the Dockerfile takes an `AUTH_TOKEN` build arg.
+- Installing `@j-meira/mui-theme` in CI uses `setup-node` with `registry-url` and `NODE_AUTH_TOKEN` from the `AUTH_TOKEN` secret (a GitHub PAT with `read:packages`).

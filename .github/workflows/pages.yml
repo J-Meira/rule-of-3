@@ -56,7 +56,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PASS }}
+          NODE_AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
 
       - name: Build
         run: pnpm build
