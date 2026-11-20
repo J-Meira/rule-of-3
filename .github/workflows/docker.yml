@@ -27,5 +27,5 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build . -t ${{ vars.REPOSITORY_NAME }}:${{ github.ref_name }} --build-arg NPM_TOKEN=${{ secrets.NPM_PASS }}
+          docker build . -t ${{ vars.REPOSITORY_NAME }}:${{ github.ref_name }} --build-arg AUTH_TOKEN=${{ secrets.AUTH_TOKEN }}
           docker push ${{ vars.REPOSITORY_NAME }}:${{ github.ref_name }}
