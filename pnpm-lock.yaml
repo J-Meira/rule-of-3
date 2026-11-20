@@ -18,8 +18,8 @@ importers:
         specifier: ^11.14.0
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0)
       '@j-meira/mui-theme':
-        specifier: ^3.0.0
-        version: 3.0.0(eb938c45f2849f4f7c91e518eafaa782)
+        specifier: ^3.1.0
+        version: 3.1.0(eb938c45f2849f4f7c91e518eafaa782)
       '@mui/material':
         specifier: ^9.0.0
         version: 9.4.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -984,8 +984,8 @@ packages:
     resolution: {integrity: sha512-AokJm4tuBHillT+FpMtxQ60n8ObyXBatq7jD2/JA9dxbDDokKQm8KMht5ibGzLVU9IJDIKK4TPKgMHEYMn3lMg==}
     engines: {node: '>=18'}
 
-  '@j-meira/mui-theme@3.0.0':
-    resolution: {integrity: sha512-PHjMdk8a13hAp8FUKbYyEGRW8s7q6Bv8PN91OgqZjA8aKYnOXHNpZDSgLymwAq0RMO16f86cOPh3cOIoZ8B3lQ==, tarball: https://npm.pkg.github.com/download/@j-meira/mui-theme/3.0.0/f1b3df0c77bb2c3f2a8b6bd531834a01f07ddce2}
+  '@j-meira/mui-theme@3.1.0':
+    resolution: {integrity: sha512-vEitrjat8YCOfm+4d3oSJYA+m9+crc+aV4TGkdSDYMAr1NUr/1lVbNOaHYtKLb1yixJh+VM6HWiPZukpPG5nhA==, tarball: https://npm.pkg.github.com/download/@j-meira/mui-theme/3.1.0/c357c206cc3380e212dafac5538cfbaa5e32ff88}
     engines: {node: '>=22.13'}
     peerDependencies:
       '@emotion/react': ^11.14.0
@@ -4534,7 +4534,7 @@ snapshots:
 
   '@isaacs/cliui@9.0.0': {}
 
-  '@j-meira/mui-theme@3.0.0(eb938c45f2849f4f7c91e518eafaa782)':
+  '@j-meira/mui-theme@3.1.0(eb938c45f2849f4f7c91e518eafaa782)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.0)(supports-color@7.2.0)

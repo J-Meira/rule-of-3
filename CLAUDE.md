@@ -7,7 +7,7 @@ Project instructions for Claude Code. It replaces the old Copilot instructions.
 Rule of 3: a small React PWA that solves rule-of-three calculations, keeps a history, and works in English, Portuguese and Spanish. Published at https://rule-of-3.jm.app.br from GitHub Pages.
 
 - React 19, TypeScript 6, Vite 8 (rolldown), `@vitejs/plugin-react` 6, `vite-plugin-pwa` 1.x with `@vite-pwa/assets-generator` 1.x
-- `@j-meira/mui-theme` **3.x** (ESM only) on Material UI **9** and MUI X Date Pickers 9. The theme's peer dependencies are installed here directly: `@mui/material`, `@mui/x-date-pickers`, `@emotion/react`, `@emotion/styled`, `formik`, `notistack`, `dayjs`, `react-icons`.
+- `@j-meira/mui-theme` **3.1+** (ESM only) on Material UI **9** and MUI X Date Pickers 9. The theme's peer dependencies are installed here directly: `@mui/material`, `@mui/x-date-pickers`, `@emotion/react`, `@emotion/styled`, `formik`, `notistack`, `dayjs`, `react-icons`.
 - Redux Toolkit for state, Formik + Yup for the form, Day.js, SCSS.
 - ESLint 10 flat config: `typescript-eslint`, `@eslint-react/eslint-plugin`, `eslint-plugin-react-hooks` 7, `eslint-plugin-react-refresh`, `eslint-plugin-import-x`, `eslint-config-prettier`.
 - pnpm 12, Node 22.13+ locally, Node 24 in CI and Docker.
@@ -63,6 +63,7 @@ return <Component />;
 - Grid v2 only: `<Grid size={{ xs: 12, md: 6 }}>` or `<Grid size={12}>`. Never `item`, `xs=`, `md=`. `Grid2` does not exist.
 - System props are gone from `Box`, `Grid`, `Stack`, `Typography`, `Link`: `display`, `mt`, `p`, `color="primary.main"`, `justifyContent`, ... all go in `sx`.
 - `slotProps.input` / `slotProps.htmlInput` instead of `InputProps` / `inputProps`; `slots` instead of `components`.
+- `MultiProvider` takes `locale` (`'en'` or `'pt-BR'`); the old `adapterLocalePtBR` flag is deprecated. The theme has no Spanish locale, so pass labels such as `DarkSwitch`'s `label` from the dictionary.
 - Import the theme only from the package root (`@j-meira/mui-theme`) or `@j-meira/mui-theme/scss/*`. Deep imports into `dist/` are blocked.
 - Never let theme-only props (`model`, `grid`, `noGrid`, `searchChange`, `action`) reach a native element.
 - Theme components used here: `Button`, `Input`, `Header`, `PopUp`, `DarkSwitch`, `MultiProvider`, `useMultiContext`, `useToast`. The theme also offers `DataTable*`, `DatePicker`, `FileUpload`, `SearchGeneric`, `SideBar`, `SideBarItem`, `MainContainer`, `DialogBox`, `Tabs`, `TreeListItem`, `BreadcrumbBar`, `ListMenu`, `GroupCard` and the hooks `useCookies`, `useDebounce`, `useWindowDimensions`.
